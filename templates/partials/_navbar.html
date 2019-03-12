@@ -1,0 +1,105 @@
+{% load static %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand">
+                <img src="{% static 'img/bribery.png'%}" class="logo" alt="" style="width:64px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav">
+                <li 
+                    {% if '/' == request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'dashboard' %}">หน้าหลัก</a>
+                </li>
+                <li 
+                    {% if 'wallet' == request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'wallet' %}">กระเป๋าเงิน</a>
+                </li>
+                <li 
+                    {% if 'transection' == request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'transection' %}">ธุรกรรมการเงิน</a>
+                </li>
+                <li 
+                    {% if 'category' == request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item dropdown"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'category' %}">หมวดหมู่</a>
+                </li>
+                <li 
+                    {% if 'report' == request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="#">รายงาน</a>
+                </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li 
+                    {% if 'dashboard' in request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link">
+                    ยินดีต้อนรับ : {{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
+                    </a>
+                    <form action="{% url 'logout' %}" method="POST" id="logout">
+                    {% csrf_token %}
+                    <input type="hidden">
+                    </form>  
+                </li>    
+                {% else %}
+                <li 
+                    {% if 'register' in request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'register' %}">
+                    <i class="fas fa-user-plus"></i> ลงทะเบียน</a>
+                </li>
+                <li 
+                    {% if '/' in request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'login' %}">
+                    <i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ</a>
+                </li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>

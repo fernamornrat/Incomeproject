@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}dashboard{% endblock title %}
+
+
+{% block content %}
+
+  <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-5">บันทึกบัญชีรายรับ-รายจ่ายง่ายๆ ได้ด้วยตัวเอง</h1>
+          <p class="lead">ยินดีต้อนรับ คุณ {{user.first_name}} {{user.last_name}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="listings" class="py-5">
+		<div class="container">
+			<div class="nutshell">
+				<h3>สร้างนิสัยการออม ด้วยการสร้างบัญชีรายรับรายจ่าย</h3><hr>
+				<p style="text-indent: 2.5em;"> การออมเงินไม่เพียงแต่แบ่งเงินที่ต้องใช้จ่ายออกเป็นส่วนๆ เท่านั้น 
+				แต่การจดบันทึกก็ยังเป็นสิ่งสำคัญที่จะเป็นตัวกระตุ้นให้เราออมเงินและรู้การใช้จ่ายของเราในแต่ละเดือนว่าเรามีเงินเท่าไหร่
+				ใช้ไปเท่าไหร่ และเหลือเก็บไว้อีกเท่าไหร่ หากเราไม่มีการบันทึกรายรับรายจ่าย เราก็ไม่สามารถรู้ได้ว่าในแต่วันนั้นเราใช้จ่ายอะไรไปบ้าง
+				ซึ่งการบัญชีรายรับรายจ่ายก็มีหลากหลายรูปแบบแตกต่างกันไป ก่อนอื่นเราต้องทำความรู้จักกับการทำบัญชีรายรับรายจ่ายเสียก่อน</p>
+				<p style="text-indent: 2.5em;"><strong>รายรับ</strong> คือ ตัวบ่งบอกว่าเราได้รับเงินในแต่ละเดือนมาจากแหล่งใดบ้าง เช่น เงินเดือน เงินจากอาชีพเสริม เป็นต้น</p>
+				<p style="text-indent: 2.5em;"><strong>รายจ่าย</strong> คือ ตัวบ่งบอกว่าในแต่ละวันเราใช้จ่ายไปเท่าไหร่ เช่น ค่าเช่าบ้าน ค่าเดินทาง ค่าอาหาร และท่องเที่ยว เป็นต้น</p>
+			</div><br><br>
+
+			<h3 class="text-center mb-3">ขั้นตอนการสร้างบัญชีรายรับรายจ่าย</h3>
+			
+			<div class="row">
+				<div class="col-md-3 col-lg-6 mb-3"><br>
+					<div class="card listing-preview"><br>
+						<div class="text-center">
+							<h4 class="text-center">ขั้นตอนที่ 1 กำหนดกระเป๋าเงิน</h4><hr><br>
+							<img src="{% static 'img/wallet.png'%}" style="width:80px;"><br><br>
+							<p style="text-indent: 2.5em;">เป็นการสร้างบัญชีและกำหนดจำนวนเงินตั้งต้น <br>
+							เงินตั้งต้นในที่นี้จะนำไปคำนวณกับบันทึกรายรับรายจ่ายประจำวัน<br>
+							และคำนวณเป็นค่าเงินสุทธิแสดงค่าใช้จ่าย</p>
+						</div><br>
+						<a href="{% url 'add_wallet' %}" class="btn btn-success btn-block">สร้างกระเป๋าตัง</a>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-lg-6 mb-3"><br>
+					<div class="card listing-preview"><br>
+						<div class="text-center">
+							<h4>ขั้นตอนที่ 2 ธุรกรรมทางการเงิน</h4><hr>
+							<img src="{% static 'img/transaction.png'%}" style="width:80px;"><br><br>
+							<p style="text-indent: 2.5em;">การจดบันทึกรายรับรายจ่ายประจำวัน รายได้และค่าใช้จ่ายแต่ละ<br>
+							รายการจะถูกแจกแจงออกมา ทำให้เราตระหนักได้ว่าค่าใช้จ่ายประเภทใด<br>สูงเกินไปหรือไม่มีความจำเป็น หรือสามารถตัดออกได้<br> 
+							ข้อมูลเหล่านี้จะช่วยให้เราสามารถวางแผนทางการเงินได้อย่างเหมาะสมมากขึ้น</p>
+						</div><br>
+						<a href="{% url 'add_transection' %}" class="btn btn-success btn-block">สร้างธุรกรรมทางการเงิน</a>
+					</div>
+				</div>
+			</div><br>
+		</div>
+  </section>
+	
+	<section id="services" class="py-5 bg-secondary text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <img src="{% static 'img/wallet36.png'%}" style="width:90px;">
+          <hr>
+						<h5 style="text-indent: 2.5em;">จะเห็นได้ว่าการจดบันทึกรายรับ-รายจ่ายมีความสำคัญต่อการดำเนินชีวิต 
+						และฝึกระเบียบวินัยในการใช้จ่ายเงิน <br>ลองคิดดูว่า ในแต่ละวัน กิจกรรมที่ทำ จะกิน จะใช้ ล้วนเกี่ยวข้องกับเงิน ดังนั้น
+						หากไม่จด จะจำหมดได้อย่างไรว่าแต่ละวัน แต่ละเดือน <br>ใช้จ่ายอะไรไปบ้าง พอจะนึกก็นึกไม่ออกเสียแล้ว จึงมีคำกล่าวว่า
+						"จำไม่หมด จดดีกว่าจำ"</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}   

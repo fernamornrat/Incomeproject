@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} Transection {% endblock title %}
+    {% block content %}
+        <div class="container"><br>
+            <a href="{% url 'add_transection' %}" class="btn btn-success">
+            <i class="fas fa-plus"></i> เพิ่มธุรกรรม</a>
+            <span class="label label-primary pull-right">ยอดคงเหลือของบัญชี {{ wallet.name }} สุทธิ {{ wallet.balance | intcomma }} โดยมีเงินตั้งต้น {{ wallet.begin | intcomma }} บาท</span>
+            <div class="data-transection">
+
+                <table class="table"><br>
+                    <thead>
+                        <tr>
+                            <th scope="col">วันที่-เวลา</th>
+                            <th scope="col">จำนวนเงิน</th>
+                            <th scope="col">รายละเอียด</th>
+                            <th scope="col">หมวดหมู่</th>
+                            <th scope="col">จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% if transection %}
+                        {% for transections in transection %}
+                        <tr>
+                            <td>{{ transections.date|date:"d/m/Y H:i" }}</td>
+                            <td {% if transections.income == '1' %} class="expense" {% else  %} class="income" {% endif %}> {% if transections.income == '1' %} - {% else  %} + {% endif %} {{ transections.amount | intcomma }}</td>
+                            <td>{{ transections.note }}</td>
+                            <td class="list-icon-cat"><img src="{{ transections.category.icon.url }}" style="width:50px;"> {{ transections.category }}</td>
+                            <td><a class="btn btn-warning" href="{% url 'edit' transections.id %}" role="button">แก้ไข</a> <a class="btn btn-danger" href="{% url 'delete' transections.id %}" role="button">ลบ</a></td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6" class="text-center">ไม่มีธุรกรรมทางการเงิน</td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endblock content %}

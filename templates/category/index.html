@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} Category {% endblock title %}
+    {% block content %}
+        <div class="container"><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{% url 'add_category' %}" class="btn btn-success"><i class="fas fa-plus"></i> เพิ่มหมวดหมู่</a>
+                    <br>
+                    <br>
+                </div>
+                <div class="col-md-6">
+                    <h4>รายรับ</h4>                        
+                    <div class="data-category">
+                        <table class="table"><br>
+                            <thead>
+                                <tr>
+                                    <th scope="col">สัญลักษณ์</th>
+                                    <th scope="col">ชื่อหมวดหมู่</th>
+                                    <th scope="col">จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if income %}
+                                    {% for income in income %}
+                                    <tr>
+                                        <td class="icon-category"><img src="{{ income.icon.url }}" style="width:50px;"></td>
+                                        <td>{{ income.name }}</td>
+                                        <td><a class="btn btn-warning" href="{% url 'edit_category' income.id %}" role="button">แก้ไข</a> 
+                                        <a class="btn btn-danger" href="{% url 'delete_category' income.id %}" role="button">ลบ</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3" class="text-center">ไม่มีหมวดหมู่</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4>รายจ่าย</h4>                        
+                    <div class="data-category">
+                        <table class="table"><br>
+                            <thead>
+                                <tr>
+                                    <th scope="col">สัญลักษณ์</th>
+                                    <th scope="col">ชื่อหมวดหมู่</th>
+                                    <th scope="col">จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if expenditure %}
+                                    {% for expenditure in expenditure %}
+                                    <tr>
+                                        <td class="icon-category"><img src="{{ expenditure.icon.url }}" style="width:50px;"></td>
+                                        <td>{{ expenditure.name }}</td>
+                                        <td><a class="btn btn-warning" href="{% url 'edit_category' expenditure.id %}" role="button">แก้ไข</a> 
+                                        <a class="btn btn-danger" href="{% url 'delete_category' expenditure.id %}" role="button">ลบ</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3" class="text-center">ไม่มีหมวดหมู่</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    {% endblock content %}

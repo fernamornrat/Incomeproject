@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} Add {% endblock title %}
+    {% block content %}
+    <section id="create" class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                        <h4><i class="fa fa-cog" aria-hidden="true"></i> ตั้งค่าเงินในกระเป๋าเงิน</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="{% if count <= 0 %} {% url 'add_wallet' %} {% else %} {% url 'edit_wallet' %} {% endif %}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                        <label for="name">ชื่อกระเป๋าตัง</label>
+                                        <input type="text" class="form-control" id="name" name="name" value="{{ wallet.name}}">
+                                    </div>
+                                <div class="form-group">
+                                    <label for="balance">จำนวนเงิน</label>
+                                    <input type="number" class="form-control" id="balance" name="balance" value="{{ wallet.balance}}">
+                                </div>
+                                <div class="text-right">
+                                    <input type="submit" value="บันทึก" class="btn btn-success">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock content %}

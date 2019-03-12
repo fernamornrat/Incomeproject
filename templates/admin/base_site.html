@@ -1,0 +1,12 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+    <h1 id="head">
+        <img src="{% static 'img/bribery.png'%}"style="width:50px;"> Money Saving
+    </h1>
+{% endblock branding %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock extrastyle %}
