@@ -1,0 +1,1 @@
+web: gunicorn incomeproject.wsgi --log-file -
